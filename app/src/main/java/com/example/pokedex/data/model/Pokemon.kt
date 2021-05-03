@@ -6,4 +6,3 @@ data class Pokemon(
     val url: String
 )
 
-data class PokemonList(val results: List<Pokemon> = listOf())

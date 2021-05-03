@@ -18,9 +18,3 @@ class PokemonViewModel(private val repo: PokemonRepository): ViewModel(){
         }
     }
 }
-
-class MovieViewModelFactory(private val repo: PokemonRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return modelClass.getConstructor(PokemonRepository::class.java).newInstance(repo)
-    }
-}

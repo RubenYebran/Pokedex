@@ -13,8 +13,8 @@ import com.example.pokedex.core.Resource
 import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.data.remote.PokemonDataSource
 import com.example.pokedex.databinding.FragmentPokemonBinding
-import com.example.pokedex.presentation.MovieViewModelFactory
 import com.example.pokedex.presentation.PokemonViewModel
+import com.example.pokedex.presentation.PokemonViewModelFactory
 import com.example.pokedex.repository.PokemonRepositoryImpl
 import com.example.pokedex.repository.RetrofitListaPokemon
 import com.example.pokedex.ui.pokemon.adapters.PokemonAdapter
@@ -25,7 +25,7 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
     private lateinit var adapter: PokemonAdapter
 
     private val viewModel by viewModels<PokemonViewModel> {
-        MovieViewModelFactory(
+        PokemonViewModelFactory(
                 PokemonRepositoryImpl(
                         PokemonDataSource(
                                 RetrofitListaPokemon.webservice
