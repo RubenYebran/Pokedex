@@ -42,10 +42,10 @@ class PokemonAdapter(private var listaPokemon: ArrayList<Pokemon>) : RecyclerVie
             var nombrePokemon = binding.tvNombrePokemon
             var urlPokemon = pokemon.url.split("/")
 
-            var index = urlPokemon[urlPokemon.size-2]
+            var index = urlPokemon[urlPokemon.size - 2]
 
 
-           nombrePokemon.text = pokemon.name.toUpperCase()
+            nombrePokemon.text = pokemon.name.toUpperCase()
 
             Glide.with(context).load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png")
                     .centerCrop().into(binding.imgPokemon)
@@ -56,12 +56,12 @@ class PokemonAdapter(private var listaPokemon: ArrayList<Pokemon>) : RecyclerVie
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults? {
                 val charSearch = constraint.toString()
-                listaFiltrada = if(charSearch.isEmpty()) {
+                listaFiltrada = if (charSearch.isEmpty()) {
                     listaPokemon
-                }else{
+                } else {
                     val resultList = ArrayList<Pokemon>()
-                    listaPokemon.forEach{
-                        if(it.name.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))){
+                    listaPokemon.forEach {
+                        if (it.name.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
                             resultList.add(it)
                         }
                     }
@@ -74,7 +74,6 @@ class PokemonAdapter(private var listaPokemon: ArrayList<Pokemon>) : RecyclerVie
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 listaFiltrada = results?.values as ArrayList<Pokemon>
-                println("Lista Filtrada: $listaFiltrada")
 
                 notifyDataSetChanged()
             }

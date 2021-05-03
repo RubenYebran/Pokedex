@@ -26,11 +26,11 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
 
     private val viewModel by viewModels<PokemonViewModel> {
         PokemonViewModelFactory(
-                PokemonRepositoryImpl(
-                        PokemonDataSource(
-                                RetrofitListaPokemon.webservice
-                        )
-                )
+            PokemonRepositoryImpl(
+               PokemonDataSource(
+                  RetrofitListaPokemon.webservice
+               )
+            )
         )
     }
 
