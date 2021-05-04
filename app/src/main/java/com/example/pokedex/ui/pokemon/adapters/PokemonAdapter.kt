@@ -34,9 +34,8 @@ class PokemonAdapter(private var listaPokemon: ArrayList<Pokemon>) : RecyclerVie
 
     override fun getItemCount(): Int = listaFiltrada.size
 
-    inner class ViewHolder(view: View, context: Context) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View, private var context: Context) : RecyclerView.ViewHolder(view) {
         private val binding = PokemonItemBinding.bind(view)
-        private var context = context
 
         fun bind(pokemon: Pokemon) {
             var nombrePokemon = binding.tvNombrePokemon
