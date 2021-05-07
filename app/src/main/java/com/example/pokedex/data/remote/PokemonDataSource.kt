@@ -5,6 +5,6 @@ import com.example.pokedex.repository.WebService
 
 class PokemonDataSource(private val webService: WebService) {
 
-    suspend fun getPokemons(): PokemonList =  webService.getPokemons()
+    suspend fun getPokemons(): PokemonList = webService.getPokemons()
 
 }

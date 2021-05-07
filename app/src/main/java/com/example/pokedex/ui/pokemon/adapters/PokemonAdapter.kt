@@ -14,7 +14,8 @@ import com.example.pokedex.databinding.PokemonItemBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
-class PokemonAdapter(private var listaPokemon: ArrayList<Pokemon>) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>(), Filterable {
+class PokemonAdapter(private var listaPokemon: ArrayList<Pokemon>) :
+    RecyclerView.Adapter<PokemonAdapter.ViewHolder>(), Filterable {
 
     var listaFiltrada = ArrayList<Pokemon>()
 
@@ -25,7 +26,10 @@ class PokemonAdapter(private var listaPokemon: ArrayList<Pokemon>) : RecyclerVie
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
         //Info del xml de cada item. fragment_item
-        return ViewHolder(layoutInflater.inflate(R.layout.pokemon_item, parent, false), parent.context)
+        return ViewHolder(
+            layoutInflater.inflate(R.layout.pokemon_item, parent, false),
+            parent.context
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -34,7 +38,8 @@ class PokemonAdapter(private var listaPokemon: ArrayList<Pokemon>) : RecyclerVie
 
     override fun getItemCount(): Int = listaFiltrada.size
 
-    inner class ViewHolder(view: View, private var context: Context) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View, private var context: Context) :
+        RecyclerView.ViewHolder(view) {
         private val binding = PokemonItemBinding.bind(view)
 
         fun bind(pokemon: Pokemon) {
@@ -46,8 +51,9 @@ class PokemonAdapter(private var listaPokemon: ArrayList<Pokemon>) : RecyclerVie
 
             nombrePokemon.text = pokemon.name.toUpperCase()
 
-            Glide.with(context).load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png")
-                    .centerCrop().into(binding.imgPokemon)
+            Glide.with(context)
+                .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png")
+                .centerCrop().into(binding.imgPokemon)
         }
     }
 
@@ -60,7 +66,9 @@ class PokemonAdapter(private var listaPokemon: ArrayList<Pokemon>) : RecyclerVie
                 } else {
                     val resultList = ArrayList<Pokemon>()
                     listaPokemon.forEach {
-                        if (it.name.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
+                        if (it.name.toLowerCase(Locale.ROOT)
+                                .contains(charSearch.toLowerCase(Locale.ROOT))
+                        ) {
                             resultList.add(it)
                         }
                     }
