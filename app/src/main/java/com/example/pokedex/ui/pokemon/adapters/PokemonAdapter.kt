@@ -24,12 +24,9 @@ class PokemonAdapter(private var listaPokemon: ArrayList<Pokemon>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
-        //Info del xml de cada item. fragment_item
-        return ViewHolder(
-            layoutInflater.inflate(R.layout.pokemon_item, parent, false),
-            parent.context
-        )
+        val layoutInflater = LayoutInflater.from(parent.context)
+        //Info del xml de cada item del recycler.
+        return ViewHolder(layoutInflater.inflate(R.layout.pokemon_item, parent, false), parent.context)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -38,11 +35,12 @@ class PokemonAdapter(private var listaPokemon: ArrayList<Pokemon>) :
 
     override fun getItemCount(): Int = listaFiltrada.size
 
-    inner class ViewHolder(view: View, private var context: Context) :
-        RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View, private var context: Context) : RecyclerView.ViewHolder(view) {
+
         private val binding = PokemonItemBinding.bind(view)
 
         fun bind(pokemon: Pokemon) {
+
             var nombrePokemon = binding.tvNombrePokemon
             var urlPokemon = pokemon.url.split("/")
 
@@ -81,7 +79,6 @@ class PokemonAdapter(private var listaPokemon: ArrayList<Pokemon>) :
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 listaFiltrada = results?.values as ArrayList<Pokemon>
-
                 notifyDataSetChanged()
             }
         }
