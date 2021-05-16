@@ -9,7 +9,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.pokedex.R
-import com.example.pokedex.core.Resource
 import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.data.remote.PokemonDataSource
 import com.example.pokedex.databinding.FragmentPokemonBinding
@@ -18,6 +17,7 @@ import com.example.pokedex.presentation.PokemonViewModelFactory
 import com.example.pokedex.repository.PokemonRepositoryImpl
 import com.example.pokedex.repository.RetrofitListaPokemon
 import com.example.pokedex.ui.pokemon.adapters.PokemonAdapter
+import com.example.pokedex.core.Result
 
 class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
 
@@ -42,14 +42,14 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
 
         viewModel.fetchPokemons().observe(viewLifecycleOwner, {
             when (it) {
-                is Resource.Loading -> {
+                is Result.Loading -> {
                     Log.d("LiveData", "Loading...")
                 }
-                is Resource.Success -> {
+                is Result.Success -> {
                     adapter = PokemonAdapter(it.data.results as ArrayList<Pokemon>)
                     binding.rvPokemon.adapter = adapter
                 }
-                is Resource.Failure -> {
+                is Result.Failure -> {
                     Log.d("Error", "${it.exception}")
                 }
             }
