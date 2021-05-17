@@ -45,10 +45,10 @@ class PokemonAdapter(private var listaPokemon: ArrayList<Pokemon>) :
 
         fun bind(pokemon: Pokemon) {
 
-            var nombrePokemon = binding.tvNombrePokemon
-            var urlPokemon = pokemon.url.split("/")
+            val nombrePokemon = binding.tvNombrePokemon
+            val urlPokemon = pokemon.url.split("/")
 
-            var index = urlPokemon[urlPokemon.size - 2]
+            val index = urlPokemon[urlPokemon.size - 2]
 
 
             nombrePokemon.text = pokemon.name.toUpperCase()
