@@ -40,17 +40,17 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
 
         binding = FragmentPokemonBinding.bind(view)
 
-        viewModel.fetchPokemons().observe(viewLifecycleOwner, {
-            when (it) {
+        viewModel.fetchPokemons().observe(viewLifecycleOwner, { pokemonsList ->
+            when (pokemonsList) {
                 is Result.Loading -> {
                     Log.d("LiveData", "Loading...")
                 }
                 is Result.Success -> {
-                    adapter = PokemonAdapter(it.data.results as ArrayList<Pokemon>)
+                    adapter = PokemonAdapter(pokemonsList.data.results as ArrayList<Pokemon>)
                     binding.rvPokemon.adapter = adapter
                 }
                 is Result.Failure -> {
-                    Log.d("Error", "${it.exception}")
+                    Log.d("Error", "${pokemonsList.exception}")
                 }
             }
         })
