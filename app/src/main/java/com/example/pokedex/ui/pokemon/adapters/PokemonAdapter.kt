@@ -68,8 +68,8 @@ class PokemonAdapter(private var listaPokemon: ArrayList<Pokemon>) :
                 } else {
                     val resultList = ArrayList<Pokemon>()
                     listaPokemon.forEach {
-                        if (it.name.toLowerCase(Locale.ROOT)
-                                .contains(charSearch.toLowerCase(Locale.ROOT))
+                        if (it.name.lowercase(Locale.ROOT)
+                                .contains(charSearch.lowercase(Locale.ROOT))
                         ) {
                             resultList.add(it)
                         }
