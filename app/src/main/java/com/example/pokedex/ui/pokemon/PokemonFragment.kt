@@ -40,7 +40,7 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
 
         binding = FragmentPokemonBinding.bind(view)
 
-        viewModel.fetchPokemons().observe(viewLifecycleOwner, { pokemonsList ->
+        viewModel.fetchPokemons().observe(viewLifecycleOwner) { pokemonsList ->
             when (pokemonsList) {
                 is Result.Loading -> {
                     Log.d("LiveData", "Loading...")
@@ -53,7 +53,7 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
                     Log.d("Error", "${pokemonsList.exception}")
                 }
             }
-        })
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
